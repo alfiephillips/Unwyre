@@ -16,17 +16,23 @@ import path from "path";
 
 // Server Imports
 
-// import { ApolloServer } from "apollo-server-express";
-// import { buildSchema } from "type-graphql";
+import { ApolloServer } from "apollo-server-express";
+import { buildSchema } from "type-graphql";
 
 // Entities
 import { Url } from "./entities/Url";
 import { User } from "./entities/User";
 
+// Loaders
+
+import { createUserLoader } from "./utils/createUserLoader";
+
 // Database Imports
 // import { buildSchema } from "type-graphql";
 import { createConnection } from "typeorm";
 import MongoStore from "connect-mongo";
+import { HelloResolver } from "./resolvers/HelloResolver";
+import { UserResolver } from "./resolvers/UserResolver";
 
 const init = async () => {
   const connection = await createConnection({
@@ -57,7 +63,6 @@ const init = async () => {
   app.set("trust proxy", 1);
   app.use(
     cors({
-      origin: process.env.CORS_ORIGIN,
       credentials: true,
     })
   );
@@ -77,6 +82,25 @@ const init = async () => {
       resave: false,
     })
   );
+
+  const apolloServer = new ApolloServer({
+    schema: await buildSchema({
+      resolvers: [HelloResolver, UserResolver],
+      validate: false,
+    }),
+    context: ({ req, res }) => ({
+      req,
+      res,
+      userLoader: createUserLoader(),
+    }),
+  });
+
+  await apolloServer.start();
+
+  await apolloServer.applyMiddleware({
+    app,
+    cors: false,
+  });
 
   app.listen(parseInt(process.env.PORT), () => {
     console.log(

@@ -19,23 +19,6 @@ import { COOKIE_NAME, FORGET_PASSWORD_PREFIX } from "../constants";
 import { v4 } from "uuid";
 import { FindOptionsUtils, getConnection } from "typeorm";
 
-@ObjectType()
-class FieldError {
-  @Field()
-  field: string;
-  @Field()
-  message: string;
-}
-
-@ObjectType()
-class UserResponse {
-  @Field(() => [FieldError], { nullable: true })
-  errors?: FieldError[];
-
-  @Field(() => User, { nullable: true })
-  user?: User;
-}
-
 @Resolver(User)
 export class UserResolver {
   email(@Root() user: User, @Ctx() { req }: MyContext) {
@@ -46,11 +29,11 @@ export class UserResolver {
     return null;
   }
 
-  @Mutation(() => UserResponse)
+  @Mutation(() => User)
   async register(
     @Arg("options") options: UsernamePasswordInput,
     @Ctx() { req }: MyContext
-  ): Promise<UserResponse> {
+  ) {
     const errors = validateRegister(options);
     if (errors) {
       return { errors };
@@ -64,6 +47,7 @@ export class UserResolver {
         .insert()
         .into(User)
         .values({
+          id: 1,
           username: options.username,
           email: options.email,
           password: hashedPassword,
@@ -73,12 +57,13 @@ export class UserResolver {
 
       user = result.raw[0];
     } catch (err) {
+      console.error(err);
       if (err.code === "23505") {
         return {
           errors: [
             {
-              field: "username",
-              message: "username already taken",
+              field: "Username",
+              message: "Username already taken",
             },
           ],
         };
@@ -86,6 +71,8 @@ export class UserResolver {
     }
 
     req.session.userId = user.id;
+
+    console.log(user);
 
     return { user };
   }
