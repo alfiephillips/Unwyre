@@ -3,7 +3,7 @@ import { Session } from "express-session";
 import { createUserLoader } from "../utils/createUserLoader";
 
 export type MyContext = {
-  req: Request & { session: Session };
+  req: Request & { session?: Session & { userId: number } };
   res: Response;
   userLoader: ReturnType<typeof createUserLoader>;
 };

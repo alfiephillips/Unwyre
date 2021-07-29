@@ -7,7 +7,6 @@ import {
   Column,
   BaseEntity,
   OneToMany,
-  ObjectID,
 } from "typeorm";
 
 import { Url } from "./Url";
@@ -17,7 +16,7 @@ import { Url } from "./Url";
 export class User extends BaseEntity {
   @Field()
   @PrimaryGeneratedColumn()
-  id!: ObjectID;
+  id!: number;
 
   @Field()
   @Column({ unique: true })

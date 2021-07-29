@@ -7,7 +7,6 @@ import {
   UpdateDateColumn,
   BaseEntity,
   ManyToOne,
-  ObjectID,
 } from "typeorm";
 
 import { User } from "./User";
@@ -17,7 +16,7 @@ import { User } from "./User";
 export class Url extends BaseEntity {
   @Field()
   @PrimaryGeneratedColumn()
-  id!: ObjectID;
+  id!: number;
 
   @Field()
   @Column()
@@ -29,7 +28,7 @@ export class Url extends BaseEntity {
 
   @Field()
   @Column()
-  creatorId: ObjectID;
+  creatorId: number;
 
   @Field()
   @ManyToOne(() => User, (user) => user.links)

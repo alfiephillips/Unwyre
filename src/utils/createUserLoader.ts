@@ -5,10 +5,9 @@ export const createUserLoader = () =>
   new DataLoader<number, User>(async (userIds) => {
     const users = await User.findByIds(userIds as number[]);
     const userIdToUser: Record<number, User> = {};
-
-    for (let i = 0; i < users.length; i++) {
-      userIdToUser[i] = users[i];
-    }
+    users.forEach((user) => {
+      userIdToUser[user.id] = user;
+    });
 
     const sortedUsers = userIds.map((userId) => userIdToUser[userId]);
     return sortedUsers;
