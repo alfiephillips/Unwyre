@@ -1,0 +1,27 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\theal\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add jsonwebtoken
+
+PATH: 
+  C:\Users\theal\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\theal\bin;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0;C:\windows\System32\OpenSSH;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\nodejs;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\dotnet;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn;C:\Program Files\Microsoft SQL Server\130\Tools\Binn;C:\Program Files\erl10.7\bin;C:\Program Files (x86)\Elixir\bin;C:\WINDOWS\system32\config\systemprofile\.mix\escripts;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Users\theal\AppData\Local\Programs\Python\Python39\Scripts;C:\Users\theal\AppData\Local\Programs\Python\Python39;C:\Users\theal\AppData\Local\Microsoft\WindowsApps;C:\Users\theal\AppData\Roaming\npm;C:\Program Files\PostgreSQL\13\bin;C:\Users\theal\AppData\Local\GitHubDesktop\bin;C:\src\flutter\bin;C:\Driver;C:\Users\theal\.dotnet\tools;C:\Program Files (x86)\mingw-w64\i686-8.1.0-posix-dwarf-rt_v6-rev0\mingw32\bin;C:\Program Files\heroku\bin;C:\Users\theal\AppData\Local\Programs\Microsoft VS Code Insiders;C:\Program Files (x86)\Microsoft SDKs\TypeScript\4.0;C:\Program Files\Redis;C:\Users\theal\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  14.15.3
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: connect ETIMEDOUT 104.16.23.35:443
+      at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1146:16)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
