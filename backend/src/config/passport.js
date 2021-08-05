@@ -13,7 +13,7 @@ passport.use(
     {
       clientID: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      callbackURL: "http://localhost:3000/api/v1/auth/github/callback",
+      callbackURL: "http://unwyre.alfiephillips.repl.co/api/v1/auth/github/callback",
     },
     function (accessToken, refreshToken, profile, done) {
       return done(null, profile);
