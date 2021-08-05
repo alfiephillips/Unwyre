@@ -49,4 +49,36 @@ router.post("/", async (req, res) => {
   });
 });
 
+router.get("/:slug", async (req, res) => {
+  const { slug } = req.params;
+  let foundUrl;
+
+  try {
+    foundUrl = await Url.findOne({ slug: slug });
+  } catch (err) {
+    return res.status(500).json({
+      path: req.originalUrl,
+      message: "Internal Server Error.",
+      stack: process.env.NODE_ENV === "production" ? "🥞" : err.stack,
+    });
+  }
+
+  if (!foundUrl) {
+    return res.status(404);
+  }
+
+  const date = Date.now();
+
+  if (date >= foundUrl.expirationDate) {
+    await Url.findOneAndDelete({ slug: slug });
+
+    return res.status(400).json({
+      path: req.originalUrl,
+      message: "This link has expired!",
+    });
+  }
+
+  return res.redirect(foundUrl.originalUrl);
+});
+
 module.exports = router;
